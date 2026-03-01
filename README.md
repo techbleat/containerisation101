@@ -53,7 +53,7 @@ docker build -t my-flask-app .
 ## run image
 docker run --rm -p 8000:8000 my-flask-app
 
-# or, using your Docker Hub name:
+## or, using your Docker Hub name:
 docker build -t shegoj/python-helloworld:1.0 .
 
 
