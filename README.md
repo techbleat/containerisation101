@@ -45,7 +45,7 @@ python [app.py](http://_vscodecontentref_/1)
 source venv/bin/activate
 pip install -r requirements.txt
 python [app.py](http://_vscodecontentref_/1)
-
+```
 
 ## BUILD a docker image
 docker build -t my-flask-app .
