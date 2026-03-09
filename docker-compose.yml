@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    restart: always
+    container_name: techbleat_db
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: techbleat
+      POSTGRES_DB: techbleat_database
+    ports:
+      - "5432:5432"
+    networks:
+      - techbleat-network
+
+  flask-code:
+    image: python-flask:2.0
+    container_name: techbleat_app
+    ports:
+      - "9095:9000"
+    networks:
+      - techbleat-network
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx
+    container_name: techbleat_proxy
+    ports:
+      - "8090:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - techbleat-network
+    depends_on:
+      - flask-code
+
+networks:
+  techbleat-network:
